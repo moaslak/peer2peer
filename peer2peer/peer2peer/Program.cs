@@ -2,7 +2,7 @@
 using System.Net;
 using System.Net.Sockets;
 
-namespace p2p
+namespace peer2peer
 {
     public class Program
     {
@@ -12,8 +12,13 @@ namespace p2p
         public static void Main(string[] args)
         {
             Console.WriteLine();
-            Console.ReadLine();
+
             ReceiveNumber();
+        }
+
+        public static void ForwardNumber()
+        {
+
         }
 
         public static int ReceiveNumber()
@@ -27,9 +32,18 @@ namespace p2p
             
             TcpClient tcpClient = listener.AcceptTcpClient();
             Console.WriteLine("Connection established");
+            
+            NetworkStream stream = tcpClient.GetStream();
+
+            byte[] buffer = new byte[1024];
+            int read = stream.Read(buffer, 0, buffer.Length);
+
+            //Console.WriteLine(System.Text.Encoding.UTF8.GetString(buffer,0,read));
+            int number = BitConverter.ToInt32(buffer, 0);
+            Console.WriteLine($"{number} received");
             Console.ReadLine();
 
-            return 0;
+            return number;
         }
     }
 }
