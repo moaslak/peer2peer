@@ -16,7 +16,7 @@ namespace peer2peer
             {
                 Console.WriteLine("Program started");
                 Console.WriteLine("Press F1 to start chain");
-                Console.WriteLine("Press F2 to start chain, and receive after wards");
+                Console.WriteLine("Press F2 to start chain, and receive afterwards");
                 Console.WriteLine("Press anything else to receive number from chain.");
                 int number = 0;
 
